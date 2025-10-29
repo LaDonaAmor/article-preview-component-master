@@ -1,0 +1,278 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  background-color: hsl(210, 46%, 95%);
+  justify-content: center;
+  align-items: center;
+  margin: 10rem;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 1rem auto;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  max-width: 800px;
+}
+
+.image {
+  width: 40%;
+  height: auto;
+  object-fit: cover;
+}
+
+.description {
+  width: 60%;
+  padding: 1.8rem 4rem 1rem 2.5rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+  max-width: 30ch;
+  word-break: break-word;
+  line-height: 1.8rem;
+  padding-bottom: 1rem;
+}
+
+p {
+  font-size: 0.8rem;
+}
+
+.description > p {
+  color: rgb(131, 135, 143);
+  line-height: 1.4rem;
+  max-width: 70ch;
+  word-break: break-word;
+}
+
+.profile {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+.name {
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.date {
+  font-weight: 100;
+  font-size: 0.7rem;
+  color: rgb(131, 135, 143);
+}
+
+.share {
+  margin-left: auto;
+  position: relative;
+}
+
+.share-btn {
+  background-color: rgb(226, 228, 234);
+  border: none;
+  border-radius: 50%;
+  padding: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.share-popup {
+  display: flex;
+  align-items: center;
+  background-color: hsl(217, 19%, 35%);
+  color: hsl(210, 46%, 95%);
+  padding: 1rem 2.5rem;
+  border-radius: 0.625rem;
+  position: absolute;
+  bottom: 3.5rem;
+  left: 25%;
+  transform: translateX(-50%);
+  z-index: 10;
+  gap: 0.8rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+.share-popup p {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.3rem;
+  padding-right: 0; /* Override global p styling */
+  color: hsl(212, 23%, 69%);
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.social-icons img {
+  width: 15px;
+  height: 15px;
+}
+
+.share-popup::after {
+  content: "";
+  position: absolute;
+  bottom: -0.6rem;
+  left: 50%;
+  transform: translateX(-0%);
+  border-left: 0.625rem solid transparent;
+  border-right: 0.625rem solid transparent;
+  border-top: 0.625rem solid hsl(217, 19%, 35%);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Active state for toggle */
+.profile.active .share-btn {
+  background-color: hsl(217, 19%, 35%);
+}
+
+.profile.active .share-popup {
+  display: flex;
+}
+
+.attribution {
+  position: fixed;
+  bottom: 0;
+  width: 75%;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 767px), (min-width: 375px) {
+  body {
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .description {
+    width: 100%;
+    padding: 1.8rem;
+  }
+
+  h2 {
+    font-weight: 900;
+    font-size: 1rem;
+    max-width: 50ch;
+    word-break: break-word;
+    line-height: 1.4rem;
+    padding-bottom: 0.6rem;
+  }
+
+  p {
+    font-size: 0.7rem;
+  }
+
+  .description > p {
+    color: rgb(131, 135, 143);
+    line-height: 1.4rem;
+    max-width: 30ch;
+    word-break: break-word;
+  }
+
+  .profile {
+    position: relative;
+  }
+
+  .profile.active .info,
+  .profile.active .avatar {
+    display: none;
+  }
+
+  .profile.active .share-popup {
+    position: absolute;
+    left: -17.5rem;
+    bottom: -1.8rem;
+    width: calc(100% + 20rem);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: hsl(217, 19%, 35%);
+    border-radius: 0 0.625rem;
+    transform: none;
+    box-shadow: none;
+  }
+
+.profile.active .share-btn {
+    background-color: rgb(226, 228, 234);
+    position: relative;
+    margin-left: auto;
+    top: 0.9rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    z-index: 30;
+  }
+
+  
+  .profile.active .share-btn img {
+    filter: brightness(0) invert(1); /* Make the icon white */
+  }
+
+  .social-icons {
+    gap: 2rem;
+  }
+
+  .share-popup {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .attribution {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.6rem;
+  }
+}
