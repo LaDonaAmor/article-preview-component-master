@@ -170,7 +170,7 @@ p {
   align-items: center;
 }
 
-@media (max-width: 767px), (min-width: 375px) {
+@media (max-width: 767px), (max-width: 375px) {
   body {
     justify-content: center;
     align-items: center;
