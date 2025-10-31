@@ -29,9 +29,9 @@ Users should be able to:
 
 ### Screenshot
 
-![Article preview component desktop view screenshot](./images/desktop view.png)
-![Desktop view with popup](./images/desktop view with popup.png)
-![Mobile view](./images/mobile view.png)
+![Article preview component desktop view screenshot](./images/desktop-view.png)
+![Desktop view with popup](./images/desktop-view-with-popup.png)
+![Mobile view](./images/mobile-view.png)
 
 
 ### Links
@@ -40,7 +40,7 @@ Users should be able to:
 - Live Site URL: [Live Link](https://frontend-mentor-article-preview-solut.netlify.app)
 
 
-## My process
+## **My process**
 
 ### Built with
 
@@ -52,7 +52,6 @@ Users should be able to:
 - BEM-inspired class naming
 - CSS `::after` pseudo-element for the tooltip arrow
 - Responsive media query at `767px` and `375px`
-- [Styled Components](https://styled-components.com/) - For styles
 
 
 ### What I learned
@@ -63,28 +62,43 @@ Key takeaways:
 1. **Mobile-First Popup Integration**
 ```css
 .profile.active {
-  background-color: hsl(217, 19%, 35%);
-  border-radius: 0 0 0.625rem 0.625rem;
-}```
+    background-color: hsl(217, 19%, 35%);
+    border-radius: 0 0 0.625rem 0.625rem;
+}
+```
 
 Instead of hiding the profile on mobile, I transformed it into the share bar — a cleaner, more performant approach than absolute positioning.
 
 2. **Z-Index & Layering for Share Button**
-```css.profile.active .share-btn {
-  position: relative;
-  z-index: 10;
-}```
+```css
+.profile.active .share-btn {
+    position: relative;
+    z-index: 10;
+}
+```
 
 Ensured the share button stays on top of the popup bar in mobile view.
 
 3. **Smooth Toggle with JavaScript**
-```jsprofile.classList.toggle('active');```
+```javascript
+profile.classList.toggle('active');
+```
 
 Used classList.toggle() with stopPropagation() to prevent unwanted closures.
 
-4. Pixel-Perfect Text Wrapping
-```cssmax-width: 30ch; /* Title */
-max-width: 70ch; /* Paragraph */```
+4. **Pixel-Perfect Text Wrapping**
+```css
+h2 {
+  max-width: 30ch;
+  word-break: break-word;
+}
+
+.description > p {
+  line-height: 1.4rem;
+  max-width: 70ch;
+  word-break: break-word;
+}
+```
 
 Used ch units to control line breaks exactly like the design.
 
@@ -108,9 +122,9 @@ In future projects, I want to focus on:
 
 ## Author
 
-- GitHub - [@LaDonaAmor](https://github.com/LaDonaAmor)
-- Frontend Mentor - [@LaDonaAmor](https://www.frontendmentor.io/profile/LaDonaAmor)
-- X - [@LaDona_Amor](https://x.com/LaDona_Amor)
+- GitHub: [@LaDonaAmor](https://github.com/LaDonaAmor)
+- Frontend Mentor: [@LaDonaAmor](https://www.frontendmentor.io/profile/LaDonaAmor)
+- X: [@LaDona_Amor](https://x.com/LaDona_Amor))
 
 
 ## Acknowledgments
