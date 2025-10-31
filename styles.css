@@ -171,7 +171,7 @@ p {
 }
 
 .attribution a {
-    margin: 0 0.3 rem;
+    margin: 0 0.3rem;
 }
 
 @media (max-width: 767px), (max-width: 375px) {
@@ -279,4 +279,8 @@ p {
     align-items: center;
     font-size: 0.6rem;
   }
+  
+  .attribution a {
+    margin: 0 0.3rem;
+}
 }
