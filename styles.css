@@ -1,5 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 
+:root {
+  /* Colors */
+  --color-primary: hsl(217, 19%, 35%);
+  --color-secondary: hsl(214, 17%, 51%);
+  --color-text: hsl(212, 23%, 69%);
+  --color-background: hsl(210, 46%, 95%);
+  --color-white: #fff;
+  --color-share-btn: rgb(226, 228, 234);
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 2.5rem;
+
+  /* Typography */
+  --font-size-xs: 0.7rem;
+  --font-size-sm: 0.8rem;
+  --font-size-base: 0.9rem;
+  --font-size-lg: 1rem;
+  --line-height-base: 1.4rem;
+
+  /* Border radius */
+  --border-radius-sm: 0.5rem;
+  --border-radius-circle: 50%;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,20 +36,20 @@
 
 body {
   font-family: "Manrope", sans-serif;
-  background-color: hsl(210, 46%, 95%);
+  background-color: var(--color-background);
   justify-content: center;
   align-items: center;
-  margin: 10rem;
+  margin: clamp(8rem, 5vw, 8rem);
 }
 
 .container {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  margin: 1rem auto;
-  border-radius: 0.5rem;
-  background-color: #fff;
-  max-width: 800px;
+  margin: min(1rem, 2vw) auto;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-sm);
+  max-width: 50rem;
 }
 
 .image {
@@ -32,66 +60,71 @@ body {
 
 .description {
   width: 60%;
-  padding: 1.8rem 4rem 1rem 2.5rem;
+  padding: clamp(1.5rem, 3vw, 1.8rem) clamp(2rem, 4vw, 4rem)
+    clamp(1rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2.5rem);
 }
 
-h2 {
-  font-size: 1.3rem;
+h1 {
+  font-size: clamp(1rem, 2vw, 1.3rem);
   max-width: 30ch;
-  word-break: break-word;
-  line-height: 1.8rem;
-  padding-bottom: 1rem;
+  line-height: clamp(1.4rem, 3vw, 1.8rem);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  padding-block-end: var(--spacing-sm);
 }
 
 p {
-  font-size: 0.8rem;
+  font-size: clamp(0.7rem, 1.5vw, 0.8rem);
 }
 
 .description > p {
   color: rgb(131, 135, 143);
-  line-height: 1.4rem;
+  line-height: var(--line-height-base);
   max-width: 70ch;
-  word-break: break-word;
+  overflow-wrap: break-word;
+  word-wrap: break-word; /* Fallback for older browsers */
+  hyphens: auto;
 }
 
 .profile {
   display: flex;
   justify-content: left;
   align-items: center;
-  padding-top: 1rem;
+  padding-top: var(--spacing-sm);
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 1rem;
+  margin-inline-end: var(--spacing-sm);
 }
 
 .name {
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: var(--font-size-base);
 }
 
 .date {
   font-weight: 100;
-  font-size: 0.7rem;
+  font-size: var(--font-size-xs);
   color: rgb(131, 135, 143);
 }
 
 .share {
-  margin-left: auto;
+  margin-inline-start: auto;
   position: relative;
 }
 
 .share-btn {
-  background-color: rgb(226, 228, 234);
+  background-color: var(--color-share-btn);
+  border-radius: var(--border-radius-circle);
+  padding: var(--spacing-xs);
   border: none;
-  border-radius: 50%;
-  padding: 0.5rem;
-  width: 2rem;
-  height: 2rem;
+  width: var(--spacing-lg);
+  height: var(--spacing-lg);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,26 +135,40 @@ p {
 .share-popup {
   display: flex;
   align-items: center;
-  background-color: hsl(217, 19%, 35%);
-  color: hsl(210, 46%, 95%);
-  padding: 1rem 2.5rem;
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  padding: var(--spacing-sm) var(--spacing-xl);
   border-radius: 0.625rem;
   position: absolute;
-  bottom: 3.5rem;
-  left: 25%;
+  inset-block-end: 3.5rem;
+  inset-inline-start: 25%;
   transform: translateX(-50%);
   z-index: 10;
   gap: 0.8rem;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
   white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.share-popup.visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 .share-popup p {
-  font-size: 0.8rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
   font-weight: 500;
   letter-spacing: 0.3rem;
   padding-right: 0; /* Override global p styling */
-  color: hsl(212, 23%, 69%);
+}
+
+.profile.active .share-popup {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
 }
 
 .social-icons {
@@ -132,8 +179,8 @@ p {
 }
 
 .social-icons img {
-  width: 15px;
-  height: 15px;
+  width: 0.9375rem;
+  height: 0.9375rem;
 }
 
 .share-popup::after {
@@ -147,44 +194,41 @@ p {
   border-top: 0.625rem solid hsl(217, 19%, 35%);
 }
 
-.hidden {
-  display: none !important;
-}
-
 /* Active state for toggle */
 .profile.active .share-btn {
   background-color: hsl(217, 19%, 35%);
 }
 
-.profile.active .share-popup {
-  display: flex;
-}
-
 .attribution {
-  position: fixed;
-  bottom: 0;
-  width: 75%;
-  padding: 1rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: var(--spacing-lg);
+  width: 100%;
+  padding: var(--spacing-sm) 0;
+  text-align: center;
 }
 
 .attribution a {
-    margin: 0 0.3rem;
+  margin: 0 0.3rem;
 }
 
-@media (max-width: 767px), (max-width: 375px) {
+@media (prefers-reduced-motion: reduce),
+  (max-width: 47.9375rem),
+  (max-width: 23.4375rem) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
   body {
     justify-content: center;
     align-items: center;
-    margin: 1.5rem;
+    margin: clamp(1rem, 3vw, 1.5rem);
   }
 
   .container {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    margin: min(0.5rem, 1vw) auto;
   }
 
   .image {
@@ -198,12 +242,14 @@ p {
     padding: 1.8rem;
   }
 
-  h2 {
+  h1 {
     font-weight: 900;
     font-size: 1rem;
     max-width: 50ch;
-    word-break: break-word;
     line-height: 1.4rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
     padding-bottom: 0.6rem;
   }
 
@@ -215,7 +261,24 @@ p {
     color: rgb(131, 135, 143);
     line-height: 1.4rem;
     max-width: 30ch;
-    word-break: break-word;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .share-btn {
+    transition: none;
+  }
+
+  .social-icons {
+    gap: 2rem;
+  }
+
+  .share-popup {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    transition: none;
   }
 
   .profile {
@@ -228,59 +291,43 @@ p {
   }
 
   .profile.active .share-popup {
+    background-color: var(--color-primary);
+    padding: var(--spacing-sm) var(--spacing-lg);
     position: absolute;
-    left: -17.5rem;
-    bottom: -1.8rem;
+    inset-inline-start: -17.5rem;
+    inset-block-end: -1.8rem;
     width: calc(100% + 20rem);
-    padding: 1rem 2rem;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: hsl(217, 19%, 35%);
     border-radius: 0 0.625rem;
     transform: none;
     box-shadow: none;
   }
 
-.profile.active .share-btn {
+  .profile.active .share-btn {
     background-color: rgb(226, 228, 234);
     position: relative;
-    margin-left: auto;
-    top: 0.9rem;
+    margin-inline-start: auto;
+    inset-block-start: 0.9rem;
     width: 1.5rem;
     height: 1.5rem;
     z-index: 30;
   }
 
-  
-  .profile.active .share-btn img {
-    filter: brightness(0) invert(1); /* Make the icon white */
-  }
-
-  .social-icons {
-    gap: 2rem;
-  }
-
-  .share-popup {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+  .share-icon-svg--active {
+    filter: brightness(0) invert(1);
   }
 
   .attribution {
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    margin-top: 1.5rem;
     width: 100%;
     padding: 0.5rem;
     text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 0.6rem;
   }
-  
+
   .attribution a {
     margin: 0 0.3rem;
-}
+  }
 }

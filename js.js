@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Toggle share popup when clicking the share button
     shareBtn.addEventListener("click", function(event) {
         event.stopPropagation(); // Prevent this click from triggering the document click
-        sharePopup.classList.toggle('hidden');
+        shareBtn.querySelector('.share-icon-svg').classList.toggle('share-icon-svg--active');
+        sharePopup.classList.toggle('visible');
         profile.classList.toggle('active');
     });
 
@@ -14,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener("click", function(event) {
         // Check if click is outside the share popup and share button
         if (!sharePopup.contains(event.target) && !shareBtn.contains(event.target)) {
-            sharePopup.classList.add('hidden');
+            sharePopup.classList.remove('visible');
             profile.classList.remove('active');
         }
     });
